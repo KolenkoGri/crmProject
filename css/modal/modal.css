@@ -1,6 +1,10 @@
-/* .modal {
+.modal {
     display: none;
-} */
+}
+
+.modal-open {
+    display: flex;
+}
 
 .modal__container {
     position: absolute;
