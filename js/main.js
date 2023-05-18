@@ -2,8 +2,7 @@
 
 // const modalTitle = document.querySelector('.modal__title');
 // const modalId = document.querySelector('.modal__id');
-// const modalClose = document.querySelector('.modal__close');
-// const modal = document.querySelector('.modal');
+
 // const modalCheck = document.querySelector('.form__input--checkbox');
 // const modalCheckInput = document.querySelector('.form__checking .form__input');
 // const totalCount = document.querySelectorAll('tbody tr td:nth-child(7)');
@@ -86,5 +85,27 @@ const renderGoods = (arr) => {
     createRow(el);
   });
 };
+
+const btnAdd = document.querySelector('.table__product');
+const overlayModal = document.querySelector('.modal__overlay');
+const modalCont = document.querySelector('.modal__container');
+const modalClose = document.querySelector('.modal__close');
+const modal = document.querySelector('.modal');
+
+btnAdd.addEventListener('click', () => {
+  modal.classList.add('modal-open');
+});
+
+modalCont.addEventListener('click', (event) => {
+  event.stopImmediatePropagation();
+});
+
+overlayModal.addEventListener('click', () => {
+  modal.classList.remove('modal-open');
+});
+
+modalClose.addEventListener('click', () => {
+  modal.classList.remove('modal-open');
+});
 
 renderGoods(items);
