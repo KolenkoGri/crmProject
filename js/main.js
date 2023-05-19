@@ -1,12 +1,5 @@
 'use strict';
 
-// const modalTitle = document.querySelector('.modal__title');
-// const modalId = document.querySelector('.modal__id');
-
-// const modalCheck = document.querySelector('.form__input--checkbox');
-// const modalCheckInput = document.querySelector('.form__checking .form__input');
-// const totalCount = document.querySelectorAll('tbody tr td:nth-child(7)');
-
 const items = [
   {
     'id': 253842678,
@@ -66,8 +59,52 @@ const items = [
   },
 ];
 
+const createTd1 = () => {
+  const td = document.createElement('td');
+  td.classList.add('table-pic');
+  const btn = document.createElement('button');
+  btn.classList.add('table__btn-pic');
+  td.append(btn);
+  const img = document.createElement('img');
+  img.classList.add('table__img');
+  img.setAttribute('src', 'css/table/icons/image.svg');
+  img.setAttribute('alt', 'Есть картинка');
+  btn.append(img);
+  return td;
+};
+
+const createTd2 = () => {
+  const td = document.createElement('td');
+  td.classList.add('table-pic');
+  const btn = document.createElement('button');
+  btn.classList.add('table__btn-pic');
+  td.append(btn);
+  const img = document.createElement('img');
+  img.classList.add('table__img');
+  img.setAttribute('src', 'css/table/icons/edit.svg');
+  img.setAttribute('alt', 'Редактировать');
+  btn.append(img);
+  return td;
+};
+
+const createTd3 = () => {
+  const td = document.createElement('td');
+  td.classList.add('table-pic');
+  const btn = document.createElement('button');
+  btn.classList.add('table__btn-pic');
+  btn.classList.add('table__btn-pic--del');
+  td.append(btn);
+  const img = document.createElement('img');
+  img.classList.add('table__img');
+  img.setAttribute('src', 'css/table/icons/garbage.svg');
+  img.setAttribute('alt', 'Удалить');
+  btn.append(img);
+  return td;
+};
+
 const createRow = (item) => {
   const tr = document.createElement('tr');
+  tr.classList.add('item');
   tr.insertAdjacentHTML('beforeend', `<td>${item.id}</td>`);
   tr.insertAdjacentHTML('beforeend', `<td>${item.title}</td>`);
   tr.insertAdjacentHTML('beforeend', `<td>${item.category}</td>`);
@@ -75,37 +112,51 @@ const createRow = (item) => {
   tr.insertAdjacentHTML('beforeend', `<td>${item.count}</td>`);
   tr.insertAdjacentHTML('beforeend', `<td>${item.price}</td>`);
   tr.insertAdjacentHTML('beforeend', `<td>${item.count * item.price}</td>`);
+
+  const ic1 = createTd1();
+  const ic2 = createTd2();
+  const ic3 = createTd3();
+  tr.append(ic1, ic2, ic3);
+
   const tableBody = document.querySelector('.table__body');
   tableBody.append(tr);
 };
 
 const renderGoods = (arr) => {
   arr.map((el) => {
-    console.log(el);
     createRow(el);
   });
 };
 
+
 const btnAdd = document.querySelector('.table__product');
 const overlayModal = document.querySelector('.modal__overlay');
-const modalCont = document.querySelector('.modal__container');
-const modalClose = document.querySelector('.modal__close');
 const modal = document.querySelector('.modal');
+
+renderGoods(items);
 
 btnAdd.addEventListener('click', () => {
   modal.classList.add('modal-open');
 });
 
-modalCont.addEventListener('click', (event) => {
-  event.stopImmediatePropagation();
+overlayModal.addEventListener('click', (e) => {
+  const target = e.target;
+  if (target === overlayModal || target.closest('.modal__close')) {
+    modal.classList.remove('modal-open');
+  }
 });
 
-overlayModal.addEventListener('click', () => {
-  modal.classList.remove('modal-open');
+const btn = document.querySelectorAll('.table__img');
+btn.forEach((item) => {
+  item.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target.closest('.table__btn-pic--del')) {
+      target.closest('.item').remove();
+      items.filter((i) => {
+        i !== target;
+      });
+      console.log(document.querySelectorAll('.item'));
+    }
+  });
 });
 
-modalClose.addEventListener('click', () => {
-  modal.classList.remove('modal-open');
-});
-
-renderGoods(items);
