@@ -103,6 +103,7 @@ const createTd3 = () => {
 };
 
 const createRow = (item) => {
+  console.log(item);
   const tr = document.createElement('tr');
   tr.classList.add('item');
   tr.insertAdjacentHTML('beforeend', `<td>${item.id}</td>`);
@@ -110,8 +111,8 @@ const createRow = (item) => {
   tr.insertAdjacentHTML('beforeend', `<td>${item.category}</td>`);
   tr.insertAdjacentHTML('beforeend', `<td>${item.units}</td>`);
   tr.insertAdjacentHTML('beforeend', `<td>${item.count}</td>`);
-  tr.insertAdjacentHTML('beforeend', `<td>${item.price}</td>`);
-  tr.insertAdjacentHTML('beforeend', `<td>${item.count * item.price}</td>`);
+  tr.insertAdjacentHTML('beforeend', `<td>$${item.price}</td>`);
+  tr.insertAdjacentHTML('beforeend', `<td>$${item.count * item.price}</td>`);
 
   const ic1 = createTd1();
   const ic2 = createTd2();
@@ -132,6 +133,47 @@ const renderGoods = (arr) => {
 const btnAdd = document.querySelector('.table__product');
 const overlayModal = document.querySelector('.modal__overlay');
 const modal = document.querySelector('.modal');
+const modalCheckbox = document.querySelector('.form__input--checkbox');
+const modalCheckboxDisabled = document.querySelector('.form__input-disabled');
+const modalTotalPrice = document.querySelector('.modal__price--total');
+const modalInputCount = document.querySelector('.form__input--count');
+const modalInputPrice = document.querySelector('.form__input--price');
+const modalIdNumber = document.querySelector('.modal__id--number');
+const form = document.querySelector('.form');
+
+const modalOpenClose = () => {
+  modal.classList.toggle('modal-open');
+};
+
+// const modalClose = () => {
+//   modal.classList.remove('modal-open');
+// };
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const newItem = Object.fromEntries(formData);
+  newItem.id = modalIdNumber.textContent;
+  console.log(newItem);
+  createRow(newItem);
+  console.log(Object.fromEntries(formData), typeof formData);
+  modalOpenClose();
+});
+
+modalInputCount.addEventListener('change', (e) => {
+  modalTotalPrice.textContent = e.target.value * modalInputPrice.value;
+});
+
+modalInputPrice.addEventListener('change', (e) => {
+  modalTotalPrice.textContent = e.target.value * modalInputCount.value;
+});
+
+
+modalCheckbox.addEventListener('click', () => {
+  modalCheckboxDisabled.value = '';
+  modalCheckboxDisabled.toggleAttribute('disabled');
+  modalCheckboxDisabled.classList.toggle('form__input-disabled');
+});
 
 renderGoods(items);
 
@@ -159,4 +201,13 @@ btn.forEach((item) => {
     }
   });
 });
+
+const allTableTotal = document.querySelector('.modal__price--total-table');
+const itemTotal = document.querySelectorAll('td:nth-child(7)');
+let num = 0;
+itemTotal.forEach((i) => {
+  num += Number(i.textContent.substring(1));
+});
+allTableTotal.textContent = num;
+console.log(allTableTotal.textContent);
 
