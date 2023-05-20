@@ -103,7 +103,6 @@ const createTd3 = () => {
 };
 
 const createRow = (item) => {
-  console.log(item);
   const tr = document.createElement('tr');
   tr.classList.add('item');
   tr.insertAdjacentHTML('beforeend', `<td>${item.id}</td>`);
@@ -123,13 +122,6 @@ const createRow = (item) => {
   tableBody.append(tr);
 };
 
-const renderGoods = (arr) => {
-  arr.map((el) => {
-    createRow(el);
-  });
-};
-
-
 const btnAdd = document.querySelector('.table__product');
 const overlayModal = document.querySelector('.modal__overlay');
 const modal = document.querySelector('.modal');
@@ -145,19 +137,38 @@ const modalOpenClose = () => {
   modal.classList.toggle('modal-open');
 };
 
-// const modalClose = () => {
-//   modal.classList.remove('modal-open');
-// };
+const allDelBtns = () => {
+  const btn = document.querySelectorAll('.table__img');
+  btn.forEach((item) => {
+    item.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target.closest('.table__btn-pic--del')) {
+        target.closest('.item').remove();
+        items.filter((i) => {
+          i !== target;
+        });
+      }
+    });
+  });
+};
+allDelBtns();
+
+const renderGoods = (arr) => {
+  arr.map((el) => {
+    createRow(el);
+  });
+  allDelBtns();
+};
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const newItem = Object.fromEntries(formData);
   newItem.id = modalIdNumber.textContent;
-  console.log(newItem);
   createRow(newItem);
-  console.log(Object.fromEntries(formData), typeof formData);
   modalOpenClose();
+  form.reset();
+  allDelBtns();
 });
 
 modalInputCount.addEventListener('change', (e) => {
@@ -188,20 +199,6 @@ overlayModal.addEventListener('click', (e) => {
   }
 });
 
-const btn = document.querySelectorAll('.table__img');
-btn.forEach((item) => {
-  item.addEventListener('click', (e) => {
-    const target = e.target;
-    if (target.closest('.table__btn-pic--del')) {
-      target.closest('.item').remove();
-      items.filter((i) => {
-        i !== target;
-      });
-      console.log(document.querySelectorAll('.item'));
-    }
-  });
-});
-
 const allTableTotal = document.querySelector('.modal__price--total-table');
 const itemTotal = document.querySelectorAll('td:nth-child(7)');
 let num = 0;
@@ -209,5 +206,3 @@ itemTotal.forEach((i) => {
   num += Number(i.textContent.substring(1));
 });
 allTableTotal.textContent = num;
-console.log(allTableTotal.textContent);
-
