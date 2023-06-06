@@ -1,6 +1,3 @@
-// import {createRow} from './createElements.js';
-// import {allDelBtns} from './deleteItems.js';
-
 const btnAdd = document.querySelector('.table__product');
 const overlayModal = document.querySelector('.modal__overlay');
 const modal = document.querySelector('.modal');
@@ -29,7 +26,6 @@ modalCheckbox.addEventListener('click', () => {
   modalCheckboxDisabled.classList.toggle('form__input-disabled');
 });
 btnAdd.addEventListener('click', () => {
-  console.log('click');
   modal.classList.add('modal-open');
 });
 

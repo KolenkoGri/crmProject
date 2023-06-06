@@ -61,8 +61,5 @@ const createRow = (item) => {
 };
 
 export {
-  createTd1,
-  createTd2,
-  createTd3,
   createRow,
 };
