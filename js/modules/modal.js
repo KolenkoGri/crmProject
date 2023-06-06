@@ -35,15 +35,3 @@ overlayModal.addEventListener('click', (e) => {
     modal.classList.remove('modal-open');
   }
 });
-
-// form.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const formData = new FormData(e.target);
-//   const newItem = Object.fromEntries(formData);
-//   newItem.id = modalIdNumber.textContent;
-//   createRow(newItem);
-//   modalOpenClose();
-//   form.reset();
-//   allDelBtns();
-// });
-

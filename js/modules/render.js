@@ -1,12 +1,14 @@
 import {createRow} from './createElements.js';
 import {allDelBtns} from './deleteItems.js';
 import {modalOpenClose} from './modal.js';
+import {win} from './openImage.js';
 
 export const renderGoods = (arr) => {
   arr.map((el) => {
     createRow(el);
   });
   allDelBtns();
+  win();
 };
 
 const modalIdNumber = document.querySelector('.modal__id--number');
@@ -29,4 +31,3 @@ itemTotal.forEach((i) => {
   num += Number(i.textContent.substring(1));
 });
 allTableTotal.textContent = num;
-

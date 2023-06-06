@@ -3,6 +3,7 @@ const createTd1 = () => {
   td.classList.add('table-pic');
   const btn = document.createElement('button');
   btn.classList.add('table__btn-pic');
+  btn.classList.add('table__btn-pic--image');
   td.append(btn);
   const img = document.createElement('img');
   img.classList.add('table__img');
@@ -43,6 +44,7 @@ const createTd3 = () => {
 
 const createRow = (item) => {
   const tr = document.createElement('tr');
+  tr.setAttribute('data-pic', 'https://plushcity.ru/wp-content/uploads/2022/04/kartinki-s-dobrym-utrom-i-horoshego-dnja-60-shtuk-53b25d7.jpg');
   tr.classList.add('item');
   tr.insertAdjacentHTML('beforeend', `<td>${item.id}</td>`);
   tr.insertAdjacentHTML('beforeend', `<td>${item.title}</td>`);
@@ -63,3 +65,4 @@ const createRow = (item) => {
 export {
   createRow,
 };
+
