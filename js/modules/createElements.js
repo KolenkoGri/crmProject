@@ -46,13 +46,14 @@ const createRow = (item) => {
   const tr = document.createElement('tr');
   tr.setAttribute('data-pic', 'https://plushcity.ru/wp-content/uploads/2022/04/kartinki-s-dobrym-utrom-i-horoshego-dnja-60-shtuk-53b25d7.jpg');
   tr.classList.add('item');
-  tr.insertAdjacentHTML('beforeend', `<td>${item.id}</td>`);
-  tr.insertAdjacentHTML('beforeend', `<td>${item.title}</td>`);
-  tr.insertAdjacentHTML('beforeend', `<td>${item.category}</td>`);
-  tr.insertAdjacentHTML('beforeend', `<td>${item.units}</td>`);
-  tr.insertAdjacentHTML('beforeend', `<td>${item.count}</td>`);
-  tr.insertAdjacentHTML('beforeend', `<td>$${item.price}</td>`);
-  tr.insertAdjacentHTML('beforeend', `<td>$${item.count * item.price}</td>`);
+  tr.insertAdjacentHTML('beforeend', `<td>${item.id}</td>
+  <td>${item.title}</td>
+  <td>${item.category}</td>
+  <td>${item.units}</td>
+  <td>${item.count}</td>
+  <td>$${item.price}</td>
+  <td>$${item.count * item.price}</td>
+  `);
 
   const ic1 = createTd1();
   const ic2 = createTd2();
