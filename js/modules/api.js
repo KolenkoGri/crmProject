@@ -1,4 +1,4 @@
-export const httpRequest = (url, callback) => {
+export const httpRequest = (callback) => {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://juvenile-protective-paddleboat.glitch.me/api/goods');
 
