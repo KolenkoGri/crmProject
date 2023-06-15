@@ -2,6 +2,7 @@ import {createRow} from './createElements.js';
 import {allDelBtns} from './deleteItems.js';
 import {modalOpenClose} from './modal.js';
 import {win} from './openImage.js';
+import {sendGoods} from './api.js';
 
 export const renderGoods = (arr) => {
   arr.map((el) => {
@@ -17,8 +18,17 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const newItem = Object.fromEntries(formData);
+  console.log(newItem);
   newItem.id = modalIdNumber.textContent;
   createRow(newItem);
+  sendGoods({title: newItem.title, description: newItem.decription,
+    category: newItem.category,
+    price: newItem.price, discount: newItem.discount,
+    count: newItem.count, units: newItem.units, images: [newItem.images]});
+  // , (newItem) => {
+  //   form.textContent = `Заявка номер ${newItem.id} сделана`;
+  // })
+  // ;
   modalOpenClose();
   form.reset();
   allDelBtns();

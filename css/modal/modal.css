@@ -11,6 +11,7 @@
     z-index: 2;
     background-color: #F4F2FF;
     height: fit-content;
+    padding: 20px;
 }
 .modal__overlay {
     background-color: rgba(0, 0, 0, 0.6);

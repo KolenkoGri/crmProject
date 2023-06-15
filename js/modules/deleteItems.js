@@ -1,5 +1,8 @@
 import {items} from './items.js';
 
+// import {httpRequest} from "./api";
+// import {renderGoods} from "./render";
+
 export const allDelBtns = () => {
   const btn = document.querySelectorAll('.table__img');
   btn.forEach((item) => {
