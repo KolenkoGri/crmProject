@@ -238,7 +238,8 @@
 }
 
 .modal__p {
-    display: flex;
+    display: none;
+    /* display: flex; */
 }
 
 @media (min-width:768px) {

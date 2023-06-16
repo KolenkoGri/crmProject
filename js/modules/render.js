@@ -20,8 +20,8 @@ form.addEventListener('submit', (e) => {
   const newItem = Object.fromEntries(formData);
   console.log(newItem);
   newItem.id = modalIdNumber.textContent;
-  createRow(newItem);
-  sendGoods({title: newItem.title, description: newItem.decription,
+  const status = sendGoods({title: newItem.title,
+    description: newItem.decription,
     category: newItem.category,
     price: newItem.price, discount: newItem.discount,
     count: newItem.count, units: newItem.units, images: [newItem.images]});
@@ -29,9 +29,12 @@ form.addEventListener('submit', (e) => {
   //   form.textContent = `Заявка номер ${newItem.id} сделана`;
   // })
   // ;
-  modalOpenClose();
-  form.reset();
-  allDelBtns();
+  if (status >= 200 || status < 300) {
+    createRow(newItem);
+    modalOpenClose();
+    form.reset();
+    allDelBtns();
+  }
 });
 
 const allTableTotal = document.querySelector('.modal__price--total-table');
