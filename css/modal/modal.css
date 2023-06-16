@@ -109,7 +109,7 @@
     width: 100%;
 }
 
-.modal__close {
+.modal__close, .modal__close-error {
     position: absolute;
     top: 34px;
     right: 30px;
@@ -300,5 +300,9 @@
         height: 350px;
         top: 164px;
         left: 218px;
+    }
+
+    .modal__error-flex {
+        display: flex;
     }
 }
