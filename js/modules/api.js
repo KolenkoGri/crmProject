@@ -8,7 +8,7 @@ export const httpRequest = (url = 'https://juvenile-protective-paddleboat.glitch
   xhr.open(method, url);
   if (headers) {
     for (const [key, value] of Object.entries(headers)) {
-      xhr.open(key, value);
+      xhr.setRequestHeader(key, value);
     }
   }
   xhr.addEventListener('load', () => {
