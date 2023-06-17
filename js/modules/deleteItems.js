@@ -7,7 +7,6 @@ export const allDelBtns = (arr, httpRequest) => {
       const target = e.target;
       if (target.closest('.table__btn-pic--del')) {
         target.closest('.item').remove();
-        console.log(arr);
         httpRequest(`https://juvenile-protective-paddleboat.glitch.me/api/goods/${target.closest('.item').firstElementChild.textContent}`, {
           method: 'DELETE',
         });

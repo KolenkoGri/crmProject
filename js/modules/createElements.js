@@ -18,6 +18,7 @@ const createTd2 = () => {
   td.classList.add('table-pic');
   const btn = document.createElement('button');
   btn.classList.add('table__btn-pic');
+  btn.classList.add('table-btn-pic--edit');
   td.append(btn);
   const img = document.createElement('img');
   img.classList.add('table__img');
