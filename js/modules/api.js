@@ -34,17 +34,35 @@ export const httpRequest = (url = 'https://juvenile-protective-paddleboat.glitch
   }
 };
 
-// export const sendGoods = (body) => {
-//   const xhr = new XMLHttpRequest();
-//   xhr.open('POST', 'https://juvenile-protective-paddleboat.glitch.me/api/goods');
+// const fetchRequest = async (
+//     url = 'https://juvenile-protective-paddleboat.glitch.me/api/goods', {
+//       method = 'GET',
+//       callback,
+//       body,
+//       headers,
+//     },
+// ) => {
+//   try {
+//     const options = {
+//       method,
+//     };
+//     if (body) {
+//       options.body = JSON.stringify(body);
+//     }
+//     if (headers) {
+//       options.headers = headers;
+//     }
 
-//   xhr.setRequestHeader('Content-Type', 'application/json');
+//     const response = await fetch(url, options);
 
-//   xhr.addEventListener('error', () => {
-//     console.log('error');
-//   });
+//     if (response.ok) {
+//       const data = await response.json();
+//       if (callback) callback(null, data);
+//       return;
+//     }
 
-//   xhr.send(JSON.stringify(body));
-
-//   return xhr.status;
+//     throw new Error(`Ошибка ${response.status}: ${response.statusText}`);
+//   } catch (error) {
+//     callback(error);
+//   }
 // };
