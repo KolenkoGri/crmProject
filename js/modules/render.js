@@ -22,12 +22,12 @@ export const renderGoods = (err, arr) => {
 const modalIdNumber = document.querySelector('.modal__id--number');
 const form = document.querySelector('.form');
 
-export const submitForm = () => {
+export const submitForm = async () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const newItem = Object.fromEntries(formData);
-
+    // НЕ РАБОТАЕТ newItem.image = toBase64(newItem.image);
     newItem.id = modalIdNumber.textContent;
     const status = async () => {
       await fetchRequest('https://juvenile-protective-paddleboat.glitch.me/api/goods', {method: 'POST',
@@ -36,7 +36,7 @@ export const submitForm = () => {
           category: newItem.category,
           price: newItem.price, discount: newItem.discount,
           count: newItem.count, units: newItem.units,
-          images: [newItem.images]},
+          image: newItem.image},
         callback(err) {
           if (err) {
             openModalError();

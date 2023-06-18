@@ -215,6 +215,7 @@
     background-image: url(image/coffee.png);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
     position: relative;
 }
 
@@ -240,6 +241,53 @@
 .modal__p {
     display: none;
     /* display: flex; */
+}
+
+/* Картинка в модальном окне */
+.modal__file {
+
+}
+
+.modal__file--input {
+
+}
+
+.modal__span {
+
+}
+
+.modal__file {
+	position: relative;
+	display: inline-block;
+}
+.modal__file .modal__span {
+	position: relative;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+	font-size: 14px;
+	vertical-align: middle;
+	color: rgb(255 255 255);
+	text-align: center;
+	border-radius: 4px;
+	line-height: 22px;
+	height: 40px;
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	transition: background-color 0.2s;
+}
+.modal__file .modal__file--input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
 }
 
 @media (min-width:768px) {
