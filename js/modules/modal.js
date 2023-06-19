@@ -1,7 +1,6 @@
 const body = document.querySelector('body');
 
-const createModal = (item) => {
-  console.log(item ? item.title : '');
+const createModal = () => {
   body.insertAdjacentHTML('afterbegin', `
     <section class="modal">
         <div class="modal__overlay">
@@ -121,16 +120,26 @@ const createModal = (item) => {
     </section>
     `);
 };
-createModal();
+
+const styles = new Set();
 
 const loadStyle = (url) => {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = url;
-  document.head.append(link);
+  if (styles.has(url)) {
+    return styles.get(url);
+  }
+  return new Promise((resolve) => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = url;
+    link.addEventListener('load', () => {
+      resolve();
+    });
+    document.head.append(link);
+    styles.add(url);
+  });
 };
 
-loadStyle('../../css/modal/modal.css');
+loadStyle('../../css/modal/modal.css', createModal());
 
 const btnAdd = document.querySelector('.table__product');
 const overlayModal = document.querySelector('.modal__overlay');
@@ -160,7 +169,6 @@ export const entryItem = (err, item) => {
   if (err) {
     return;
   }
-  console.log(item);
   idNumber.style.display = 'flex';
   const modalIdNumber = document.querySelector('.modal__id--number');
   modalIdNumber.textContent = item.id;
