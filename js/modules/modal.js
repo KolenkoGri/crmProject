@@ -21,8 +21,7 @@ const createModal = () => {
                                 <input class=
                                 "form__input form__input--title"
                                 type="text" 
-                                name = "title" required 
-                                value = >
+                                name = "title" required >
                             </label>
                         </fieldset>
                         <fieldset 
@@ -76,7 +75,8 @@ const createModal = () => {
                         <label class="modal__file" for = "image">
                         <input type="file" 
                         class="modal__file--input" 
-                        id="image" name="image" accept="image/*">
+                        id="image" name="image" accept="image/*"
+                        form = 'myform' required>
                         <span class = "modal__span">Добавить изображение</span>
                         </label>
                         <div class="modal__add-img">
@@ -164,6 +164,11 @@ const modalErrorMessage = document.querySelector('.modal__error-message');
 export const modalOpenClose = () => {
   modal.classList.toggle('modal-open');
 };
+const formTitle = document.querySelector('.form__input--title');
+const formDesc = document.querySelector('.form__input--description');
+const formCategory = document.querySelector('.form__input--category');
+const formUnits = document.querySelector('.form__input--units');
+
 
 export const entryItem = (err, item) => {
   if (err) {
@@ -172,13 +177,9 @@ export const entryItem = (err, item) => {
   idNumber.style.display = 'flex';
   const modalIdNumber = document.querySelector('.modal__id--number');
   modalIdNumber.textContent = item.id;
-  const formTitle = document.querySelector('.form__input--title');
   formTitle.value = item.title;
-  const formDesc = document.querySelector('.form__input--description');
   formDesc.value = item.description;
-  const formCategory = document.querySelector('.form__input--category');
   formCategory.value = item.category;
-  const formUnits = document.querySelector('.form__input--units');
   formUnits.value = item.units;
   modalInputCount.value = item.count;
   modalCheckbox.toggleAttribute('checked');
@@ -197,6 +198,30 @@ export const entryItem = (err, item) => {
 };
 
 // Добавление изображения
+
+const regExp = (/[^А-Я\s]/gi);
+formTitle.addEventListener('input', () => {
+  formTitle.value = formTitle.value.replace(regExp, '');
+});
+formDesc.addEventListener('input', () => {
+  formDesc.value = formDesc.value.replace((/[^А-Я\s]{80,}/gi), '');
+});
+formCategory.addEventListener('input', () => {
+  formCategory.value = formCategory.value.replace(regExp, '');
+});
+formUnits.addEventListener('input', () => {
+  formUnits.value = formUnits.value.replace(/[^А-Я]/gi, '');
+});
+modalInputCount.addEventListener('input', () => {
+  modalInputCount.value = modalInputCount.value.replace(/\D/gi, '');
+});
+modalCheckboxDisabled.addEventListener('input', () => {
+  modalCheckboxDisabled.value =
+  modalCheckboxDisabled.value.replace(/[^0-9]/gi, '');
+});
+modalInputPrice.addEventListener('input', () => {
+  modalInputPrice.value = modalInputPrice.value.replace(/\D/gi, '');
+});
 
 
 export const toBase64 = (file) => {
