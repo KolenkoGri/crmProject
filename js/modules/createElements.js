@@ -45,7 +45,7 @@ const createTd3 = () => {
 
 const createRow = (item) => {
   const tr = document.createElement('tr');
-  tr.setAttribute('data-pic', 'https://plushcity.ru/wp-content/uploads/2022/04/kartinki-s-dobrym-utrom-i-horoshego-dnja-60-shtuk-53b25d7.jpg');
+  tr.setAttribute('data-pic', `https://juvenile-protective-paddleboat.glitch.me/${item.image}`);
   tr.classList.add('item');
   tr.insertAdjacentHTML('beforeend', `<td>${item.id}</td>
   <td>${item.title}</td>
