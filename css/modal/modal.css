@@ -245,7 +245,7 @@
 }
 
 /* Картинка в модальном окне */
-.modal__file {
+/* .modal__file {
 
 }
 
@@ -255,7 +255,7 @@
 
 .modal__span {
 
-}
+} */
 
 .modal__file {
 	position: relative;

@@ -285,6 +285,7 @@ modalCheckbox.addEventListener('click', () => {
 });
 btnAdd.addEventListener('click', () => {
   form.reset();
+  modalAddImg.style.display = 'none';
   idNumber.style.display = 'none';
   modal.classList.add('modal-open');
 });
